@@ -19,20 +19,21 @@ export const setupTitle = (plugin: FileExplorerNoteCount, vault: Vault, revert =
 };
 
 export const setTitle = (item: FileItem, vault: Vault) => {
-    if (item.file.extension != "md") { return }
+    if (item.file.extension != "md") { return; }
 
-    let idMatch = item.file.basename.match(/([0-9]+|[a-z]+)/g)!
+    let idMatch = item.file.basename.match(/([0-9]+|[a-z]+)/g)!;
     if (idMatch) {
-        let indentCount = (idMatch.length - 1)
-        let indentStr = (indentCount * 20).toString() + "px"
-        item.titleEl.style.marginLeft = indentStr
+        let indentCount = (idMatch.length - 1);
+        let indentStr = (indentCount * 20).toString() + "px";
+
+        item.innerEl.style.marginLeft = indentStr;
     }
 
     vault.read(item.file).then(function (val) {
         const match = /# (.+)\s*/.exec(val);
         if (match != null) {
             const name = match[1];
-            item.titleInnerEl.innerText = name;
+            item.innerEl.innerText = name;
         } 
     }).catch(error => {
         console.log(`Error retrieving content of ${item.file.path}: ${error}`)
@@ -57,6 +58,6 @@ export const updateTitle = (
 };
 
 const removeTitle = (item: FileItem) => {
-    if (item.titleEl.dataset['name']) delete item.titleEl.dataset['name'];
-    item.titleEl.removeClass(withSubfolderClass);
+    if (item.innerEl.dataset['name']) delete item.innerEl.dataset['name'];
+    item.innerEl.removeClass(withSubfolderClass);
 };

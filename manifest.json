@@ -4,7 +4,7 @@
     "version": "1.0.2",
     "minAppVersion": "0.11.13",
     "description": "Shows the first markdown header of a note in the file explorer",
-    "author": "Dylan Elliott",
-    "authorUrl": "https://github.com/dyldog",
+    "author": "Riccardo Canalicchio",
+    "authorUrl": "https://github.com/nongio",
     "isDesktopOnly": false
 }
